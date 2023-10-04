@@ -1,0 +1,12 @@
+@model Book
+
+<h2>@Model.Name</h2>
+<h3>@Model.Author</h3>
+
+<p>
+  @Model.Type
+  <br>
+  @Model.Description
+  <br>
+  <i>@Model.Price.ToString(".##")</i>
+</p>

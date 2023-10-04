@@ -1,6 +1,6 @@
-@model IEnumerable<Book>
+@model PageViewModel
 
-@foreach (Book book in @Model)
+@foreach (Book book in @Model.Books)
 {
   <h2>@book.Name</h2>
   <h3>@book.Author</h3>
@@ -10,3 +10,5 @@
     <i>@book.Price.ToString(".##")</i>
   </section>
 }
+
+@await Component.InvokeAsync(nameof(Paging), new { @Model.Info })
