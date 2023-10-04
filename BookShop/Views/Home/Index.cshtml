@@ -1,1 +1,12 @@
-<h2>Hello from index view</h2>
+@model IEnumerable<Book>
+
+@foreach (Book book in @Model)
+{
+  <h2>@book.Name</h2>
+  <h3>@book.Author</h3>
+  <section>
+    @book.Type
+    <p>@book.Description</p>
+    <i>@book.Price.ToString(".##")</i>
+  </section>
+}
