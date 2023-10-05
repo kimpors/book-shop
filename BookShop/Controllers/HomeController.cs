@@ -20,8 +20,20 @@ public class HomeController : Controller
   {
     return View(new PageViewModel()
     {
-      Books = _repo.Books.Skip(id * ItemsPerPage).Take(ItemsPerPage),
-      Info = new PageInfo(id, ItemsPerPage, _repo.Books.Count())
+      Books = _repo.Books.
+        Skip(id * ItemsPerPage).
+        Take(ItemsPerPage),
+
+      Info = new PageInfo(
+        id,
+        ItemsPerPage,
+        _repo.Books.Count())
     });
+  }
+
+  public IActionResult Detail(int id)
+  {
+    return View(_repo.Books
+        .FirstOrDefault(u => u.Id == id));
   }
 }

@@ -1,14 +1,18 @@
 @model PageViewModel
 
-@foreach (Book book in @Model.Books)
-{
-  <h2>@book.Name</h2>
-  <h3>@book.Author</h3>
-  <section>
-    @book.Type
-    <p>@book.Description</p>
-    <i>@book.Price.ToString(".##")</i>
-  </section>
-}
+<article class="home">
+  @foreach (Book book in @Model.Books)
+  {
+    <section>
+      <h2>@book.Name</h2>
+      <p>
+        @book.Type
+        <br>
+        <i>Price: @book.Price.ToString(".##")</i>
+      </p>
+      <a asp-action="detail" asp-route-id="@book.Id">Detail</a>
+    </section>
+  }
+</article>
 
 @await Component.InvokeAsync(nameof(Paging), new { @Model.Info })
