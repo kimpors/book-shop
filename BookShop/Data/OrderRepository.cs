@@ -10,9 +10,6 @@ public class OrderRepository
   {
     if (Orders.Any(u => u.Id == order.Id))
     {
-      order = Orders.First(u => u.Id == order.Id);
-      order.Quantity++;
-
       return;
     }
 

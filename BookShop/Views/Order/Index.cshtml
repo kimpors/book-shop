@@ -1,9 +1,9 @@
 @model IEnumerable<Order>
 
 <article class="home">
-  @if (@Model.Count() == 0)
+  @if (!@Model.Any())
   {
-    <h1>Empty :(</h1>
+    <h1>Empty ( -_- )</h1>
   }
   else
   {
@@ -13,9 +13,35 @@
         <h2>@order.Book.Name</h2>
         <h2>@order.Quantity</h2>
         <a asp-action="remove" asp-route-id="@order.Id">Remove</a>
+        <input id="@order.Id" type="button" name="dialog-open" value="Edit">
       </section>
     }
   }
 </article>
+
+<dialog>
+  <form asp-action="edit" method="post">
+    <input id="id" name="id" type="hidden">
+    <p>
+      <label>
+        Set quantity of books:
+
+        <input name="quantity" type="number" min="1" inputmode="numeric" value="1">
+      </label>
+    </p>
+    <p>
+      <button value="cancel" formmethod="dialog">Cancel</button>
+      <button type="submit">Change</button>
+    </p>
+  </form>
+</dialog>
+
+<script>
+  $("input[name='dialog-open']").click(function()
+  {
+    $("dialog").attr("open", true);
+    $("dialog input[name='id']").attr("value", $(this).attr("id"));
+  });
+</script>
 
 <a asp-controller="home" asp-action="index">Back</a>

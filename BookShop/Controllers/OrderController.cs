@@ -31,4 +31,17 @@ public class OrderController : Controller
     _orders.Remove(id);
     return RedirectToAction(nameof(Index));
   }
+
+  [HttpPost]
+  public IActionResult Edit(int id, int quantity)
+  {
+    var temp = _orders.Orders
+      .FirstOrDefault(u => u.Id == id);
+
+    temp.Quantity = quantity;
+
+    // _orders.Add(temp);
+
+    return RedirectToAction(nameof(Index));
+  }
 }
