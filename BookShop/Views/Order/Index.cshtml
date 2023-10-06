@@ -10,6 +10,7 @@ else
   {
     <h2>@order.Book.Name</h2>
     <h2>@order.Quantity</h2>
+    <a asp-action="remove" asp-route-id="@order.Id">Remove</a>
   }
 }
 

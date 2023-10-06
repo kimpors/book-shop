@@ -2,20 +2,16 @@ namespace BookShop.Models;
 
 public class Order
 {
-  private int _quantity;
-  public required Book Book { get; set; }
-
-  public int Quantity
+  public Order(Book book, int quantity = 1)
   {
-      get { return _quantity; }
-      set 
-      { 
-        if (value < 1)
-        {
-          value = 1;
-        }
-
-        _quantity = value;
-      }
+    Id = book.Id;
+    Book = book;
+    Quantity = quantity;
   }
+
+  public int Id { get; init; }
+
+  public Book Book { get; init; }
+
+  public int Quantity { get; set; }
 }

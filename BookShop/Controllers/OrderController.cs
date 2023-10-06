@@ -17,17 +17,18 @@ public class OrderController : Controller
     return View(_orders.Orders);
   }
 
-  public IActionResult Add(int id)
+  public RedirectToActionResult Add(int id)
   {
     var book = _books.Books
       .FirstOrDefault(u => u.Id == id);
 
-    _orders.Add(new Order()
-    {
-      Book = book,
-      Quantity = 1
-    });
+    _orders.Add(new Order(book));
+    return RedirectToAction(nameof(Index));
+  }
 
+  public RedirectToActionResult Remove(int id)
+  {
+    _orders.Remove(id);
     return RedirectToAction(nameof(Index));
   }
 }

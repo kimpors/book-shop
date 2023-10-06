@@ -8,14 +8,27 @@ public class OrderRepository
 
   public void Add(Order order)
   {
-    Order temp = Orders.FirstOrDefault(u => u.Book == order.Book);
-
-    if (temp is null)
+    if (Orders.Any(u => u.Id == order.Id))
     {
-      Orders.Add(order);
+      order = Orders.First(u => u.Id == order.Id);
+      order.Quantity++;
+
       return;
     }
 
-    temp.Quantity++;
+    Orders.Add(order);
+  }
+
+  public bool Remove(int id)
+  {
+    var temp = Orders.
+      FirstOrDefault(u => u.Id == id);
+
+    if (temp is not null)
+    {
+      return Orders.Remove(temp);
+    }
+
+    return false;
   }
 }
