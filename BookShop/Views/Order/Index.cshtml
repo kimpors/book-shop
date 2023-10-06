@@ -1,16 +1,21 @@
 @model IEnumerable<Order>
 
-@if (@Model is null)
-{
-  <h1>Empty :(</h1>
-}
-else
-{
-  foreach (Order order in @Model)
+<article class="home">
+  @if (@Model.Count() == 0)
   {
-    <h2>@order.Book.Name</h2>
-    <h2>@order.Quantity</h2>
-    <a asp-action="remove" asp-route-id="@order.Id">Remove</a>
+    <h1>Empty :(</h1>
   }
-}
+  else
+  {
+    foreach (Order order in @Model)
+    {
+      <section>
+        <h2>@order.Book.Name</h2>
+        <h2>@order.Quantity</h2>
+        <a asp-action="remove" asp-route-id="@order.Id">Remove</a>
+      </section>
+    }
+  }
+</article>
 
+<a asp-controller="home" asp-action="index">Back</a>

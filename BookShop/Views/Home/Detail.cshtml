@@ -1,12 +1,19 @@
 @model Book
 
-<h2>@Model.Name</h2>
-<h3>@Model.Author</h3>
+<article class="home">
+  <section>
+    <h2>@Model.Name</h2>
+    <h3>@Model.Author</h3>
 
-<p>
-  @Model.Type
-  <br>
-  @Model.Description
-  <br>
-  <i>@Model.Price.ToString(".##")</i>
-</p>
+    <p>
+      @Model.Type
+      <br>
+      @Model.Description
+      <br>
+      <i>@Model.Price.ToString(".##")</i>
+    </p>
+
+    <a asp-controller="order" asp-action="add" asp-route-id="@Model.Id">Add To Basket</a>
+  </section>
+  <a asp-action="index">Back</a>
+</article>
