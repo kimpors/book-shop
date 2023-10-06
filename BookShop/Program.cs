@@ -11,6 +11,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 
 builder.Services.AddTransient<IBookRepository, EFBookRepository>();
+builder.Services.AddSingleton<OrderRepository>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

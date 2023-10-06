@@ -1,0 +1,15 @@
+@model IEnumerable<Order>
+
+@if (@Model is null)
+{
+  <h1>Empty :(</h1>
+}
+else
+{
+  foreach (Order order in @Model)
+  {
+    <h2>@order.Book.Name</h2>
+    <h2>@order.Quantity</h2>
+  }
+}
+
